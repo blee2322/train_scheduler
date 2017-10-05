@@ -19,14 +19,14 @@ $(".btn").on("click", function(){
   var Dest = $("#dest").val().trim();
   var firstTT = $("#first").val().trim();
   var Freq = $("#frqrate").val().trim();
-
+  console.log(firstTT);
   var newSchedule = {
 
     trainName: tName,
     trainDest: Dest,
     trainTime: firstTT,
     trainFreq: Freq
-  };
+  }
 
   database.ref().push(newSchedule)
   
@@ -35,6 +35,7 @@ $(".btn").on("click", function(){
   $("#dest").val("");
   $("#first").val("");
   $("#frqrate").val("");
+});
 
   database.ref().on("child_added", function(childsnap){
 
@@ -43,7 +44,19 @@ $(".btn").on("click", function(){
     var firstTT = childsnap.val().trainTime;
     var Freq = childsnap.val().trainFreq;
 
-    var firstTrainBeaut = moment().format("hh:mm");
-    console.log(firstTrainBeaut);
-  })
+    var tFreq = Freq;
+    console.log(tFreq);
+    var firstTrain = firstTT;
+    var firstTrainConvert = moment(firstTrain, "HH:mm");
+    var tDiff = moment().diff(moment(firstTrainConvert), "minutes");
+    //trainRemain will be my value for minutes away
+    var trainRemain = tDiff % tFreq;
+    var minTill = tFreq - trainRemain;
+    //This will give me the next train
+    var nxtTrain = moment().add(minTill, "minutes").format("HH:mm");
+
+
+  $("#arivDisplay").append("<tr><td>" + tName + "</td><td>" + Dest + "</td><td>" +
+  firstTT + "</td><td>" + Freq + "</td><td>" + nxtTrain + "</td><td>" + minTill + "</td></tr>");
+  
 });

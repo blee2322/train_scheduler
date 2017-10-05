@@ -20,12 +20,14 @@
           <div class="panel panel-default panel-primary">
             <div class="panel-heading">Train Destinations You Have Searched</div>
               <div class="panel-body">
-                <table class="table">
+                <table class="table" id="arivDisplay">
                   <tr>
                     <th>Train Name</th>
                     <th>Destination</th>
                     <th>First Train Time</th>
                     <th>Frequency</th>
+                    <th>Next Arrival</th>
+                    <th>Minutes Away</th>
                   </tr>
                 </table>
               </div>
@@ -42,11 +44,11 @@
                 <form>
                   <div class="form-group">
                     <label for="trainname">Train Name:</label>
-                    <input type="trainname" class="form-control" id="tname">
+                    <input type="name" class="form-control" id="tname">
                   </div>
                   <div class="form-group">
                     <label for="dest">Destination:</label>
-                    <input type="destination" class="form-control" id="dest">
+                    <input type="name" class="form-control" id="dest">
                   </div>
                   <div class="form-group">
                     <label for="fstime">First Train Time (HH:mm):</label>
@@ -54,7 +56,7 @@
                   </div>
                   <div class="form-group">
                     <label for="freq">Frequency (min):</label>
-                    <input type="time" class="form-control" id="frqrate">
+                    <input type="number" class="form-control" id="frqrate">
                   </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
