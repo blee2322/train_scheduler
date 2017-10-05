@@ -6,39 +6,44 @@ var config = {
     storageBucket: "trainscheduler-7f9ba.appspot.com",
     messagingSenderId: "715496271129"
   };
-  firebase.initializeApp(config);
 
-  var database = firebase.database();
+firebase.initializeApp(config);
 
-  $(".btn").on("click", function(){
-    event.preventDefault();
-    console.log("btn");
+var database = firebase.database();
 
-    var tName = $("#tname").val().trim(); 
-    var Dest = $("#dest").val().trim();
-    var firstTT = $("#first").val().trim();
-    var Freq = $("#frqrate").val().trim();
-    console.log(Freq, Dest, firstTT, tName);
+$(".btn").on("click", function(){
+  event.preventDefault();
+  console.log("btn");
 
-    var newSchedule = {
+  var tName = $("#tname").val().trim(); 
+  var Dest = $("#dest").val().trim();
+  var firstTT = $("#first").val().trim();
+  var Freq = $("#frqrate").val().trim();
 
-      trainName: tName,
-      trainDest: Dest,
-      trainTime: firstTT,
-      trainFreq: Freq
-    };
+  var newSchedule = {
 
-    database.ref().push(newSchedule)
-    
-    // This will ensure that the input fields are cleared when the user submits the form.
-    $("#tname").val("");
-    $("#dest").val("");
-    $("#first").val("");
-    $("#frqrate").val("");
+    trainName: tName,
+    trainDest: Dest,
+    trainTime: firstTT,
+    trainFreq: Freq
+  };
 
-// database.ref().on("child_added", function(childsnap){
+  database.ref().push(newSchedule)
+  
+  // This will ensure that the input fields are cleared when the user submits the form.
+  $("#tname").val("");
+  $("#dest").val("");
+  $("#first").val("");
+  $("#frqrate").val("");
 
-// })
+  database.ref().on("child_added", function(childsnap){
 
+    var tName = childsnap.val().trainName;
+    var Dest = childsnap.val().trainDest;
+    var firstTT = childsnap.val().trainTime;
+    var Freq = childsnap.val().trainFreq;
 
+    var firstTrainBeaut = moment().format("hh:mm");
+    console.log(firstTrainBeaut);
+  })
 });
