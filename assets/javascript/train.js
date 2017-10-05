@@ -1,18 +1,18 @@
 var config = {
-    apiKey: "AIzaSyAZ79X5P-O-J5KLaNlMMkcKVQT4FvxPVeI",
-    authDomain: "sample-project-43eec.firebaseapp.com",
-    databaseURL: "https://sample-project-43eec.firebaseio.com",
-    projectId: "sample-project-43eec",
-    storageBucket: "sample-project-43eec.appspot.com",
-    messagingSenderId: "183193077475"
+    apiKey: "AIzaSyCjeKr9dIc5z94ZhTBm7hv-gK2UUT184iE",
+    authDomain: "trainscheduler-7f9ba.firebaseapp.com",
+    databaseURL: "https://trainscheduler-7f9ba.firebaseio.com",
+    projectId: "trainscheduler-7f9ba",
+    storageBucket: "trainscheduler-7f9ba.appspot.com",
+    messagingSenderId: "715496271129"
   };
   firebase.initializeApp(config);
 
   var database = firebase.database();
 
-  $("btn").on("click", function(){
+  $(".btn").on("click", function(){
     event.preventDefault();
-    console.log(btn);
+    console.log("btn");
 
     var tName = $("#tname").val().trim(); 
     var Dest = $("#dest").val().trim();
@@ -28,18 +28,17 @@ var config = {
       trainFreq: Freq
     };
 
-    console.log(newSchedule.trainName);
-
-
     database.ref().push(newSchedule)
     
     // This will ensure that the input fields are cleared when the user submits the form.
     $("#tname").val("");
     $("#dest").val("");
     $("#first").val("");
-    $("#frqrate"),val("");
+    $("#frqrate").val("");
+
+// database.ref().on("child_added", function(childsnap){
+
+// })
 
 
-
-
-  })
+});
