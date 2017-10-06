@@ -49,11 +49,9 @@ $(".btn").on("click", function(){
     var firstTrain = firstTT;
     var firstTrainConvert = moment(firstTrain, "HH:mm");
     var tDiff = moment().diff(moment(firstTrainConvert), "minutes");
-    //trainRemain will be my value for minutes away
     var trainRemain = tDiff % tFreq;
     var minTill = tFreq - trainRemain;
-    //This will give me the next train
-    var nxtTrain = moment().add(minTill, "minutes").format("HH:mm");
+    var nxtTrain = moment().add(minTill).format("HH:mm");
 
 
   $("#arivDisplay").append("<tr><td>" + tName + "</td><td>" + Dest + "</td><td>" +
