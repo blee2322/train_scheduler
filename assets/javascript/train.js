@@ -48,13 +48,14 @@ $(".btn").on("click", function(){
     console.log(tFreq);
     var firstTrain = firstTT;
     var firstTrainConvert = moment(firstTrain, "HH:mm");
-    var tDiff = moment().diff(moment(firstTrainConvert), "minutes");
+    var tDiff = moment().diff(firstTrainConvert, "minutes");
     var trainRemain = tDiff % tFreq;
     var minTill = tFreq - trainRemain;
-    var nxtTrain = moment().add(minTill).format("HH:mm");
+    var nxtTrain = moment().add(minTill, "minutes");
+    var arrive = moment(nxtTrain).format("HH:mm");
 
 
   $("#arivDisplay").append("<tr><td>" + tName + "</td><td>" + Dest + "</td><td>" +
-  firstTT + "</td><td>" + Freq + "</td><td>" + nxtTrain + "</td><td>" + minTill + "</td></tr>");
+  firstTT + "</td><td>" + Freq + "</td><td>" + arrive + "</td><td>" + minTill + "</td></tr>");
   
 });
